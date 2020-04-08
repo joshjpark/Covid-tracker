@@ -30,10 +30,10 @@ const Charts = () => {
                         fill: false,
                     }, {
                         data: dailyData.map(({ deaths }) => deaths), 
-                        label: 'Recovered', 
+                        label: 'Deaths', 
                         backgroundColor: 'red', 
                         borderColor: 'red',
-                        fill: false,
+                        fill: true,
                     }],
                     options: {
                         responsive: true,
