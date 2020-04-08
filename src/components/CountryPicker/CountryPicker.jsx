@@ -13,11 +13,20 @@ const CountryPicker = () => {
         }
         fetchedCountries();
     },[setFetchedCountries]);
+    
+    // destructure object to array of countries
+    // const { countries } = fetchedCountries;
+    // console.log(fetchedCountries);
+    // console.log('hello!!!');
+    // console.log(fetchedCountries);
 
     return (
         <FormControl className={styles.formControl}>
             <NativeSelect>
                 <option value="global">Global</option>
+                {/* {fetchedCountries.countries.map((country, i) => <option key={i} value={country}>{country}</option>)} */}
+                {/* {countries.map((country, i) => <option key={i} value={country}>{country}</option>)}
+                // {countries.map((country, i) => <option key={i} value={country}>{country}</option>)} */}
             </NativeSelect>
         </FormControl>
     )
