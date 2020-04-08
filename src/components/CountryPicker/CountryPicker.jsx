@@ -3,9 +3,10 @@ import { NativeSelect, FormControl } from '@material-ui/core';
 import styles from './CountryPicker.module.css';
 import { fetchCountries } from '../../api';
 
-const CountryPicker = () => {
+const CountryPicker = ({ handleCountryChange }) => {
 
     const [fetchedCountries, setFetchedCountries] = useState([]);
+    let countries;
 
     useEffect(() => {
         const fetchedCountries = async () => {
@@ -14,21 +15,16 @@ const CountryPicker = () => {
         fetchedCountries();
     },[setFetchedCountries]);
     
+    // destructure country list
     if (fetchedCountries.countries) {
-        console.log('this should never be nuill:')
-        console.log(fetchedCountries.countries);
-        var countries = (fetchedCountries.countries.map((country, i) => country.name));
+        countries = (fetchedCountries.countries.map((country, i) => country.name));
     }
 
     return (
         <FormControl className={styles.formControl}>
-            <NativeSelect>
+            <NativeSelect defaultValue="" onChange={(e) => handleCountryChange(e.target.value)}>
                 <option value="global">Global</option>
-                {countries && countries.map((country, i) => <option key={i} value={country}>{country}</option>)}
-                
-                {/* {fetchedCountries.countries.map((country, i) => <option key={i} value={country}>{country}</option>)} */}
-                {/* {countries.map((country, i) => <option key={i} value={country}>{country}</option>)}
-                // {countries.map((country, i) => <option key={i} value={country}>{country}</option>)} */}
+                {countries && countries.map((country, i) => <option key={i} value={country}>{country}</option>)}                
             </NativeSelect>
         </FormControl>
     )

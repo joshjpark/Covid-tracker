@@ -8,12 +8,19 @@ class App extends Component {
     // fetch data to Cards object
     state = {
         data: {},
+        country: '',
     }
 
     async componentDidMount() {
         // const { data: { confirmed, recovered, deaths, lastUpdate } } = await fetchData();
         const fetchedData = await fetchData();
         this.setState( { data: fetchedData })
+    }
+
+    handleCountryChange = async (country) => {
+        console.log(country);
+        // fetch the data
+        // set the state
     }
 
     render() {
@@ -23,7 +30,7 @@ class App extends Component {
             // no css intereference across fs
         <div className={styles.container}>
             <Cards data={data}/>
-            <CountryPicker />
+                <CountryPicker handleCountryChange={this.handleCountryChange}/>
             <Chart />
         </div>
         )
