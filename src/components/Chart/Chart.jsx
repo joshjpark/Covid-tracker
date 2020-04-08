@@ -11,7 +11,6 @@ const Charts = () => {
             const dailyData = await fetchDailyData();
             setDailyData(dailyData);
         }
-        // console.log(dailyData);
         fetchAPI();
     });
 
