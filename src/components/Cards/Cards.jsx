@@ -9,8 +9,9 @@ const Cards = ({ data : { data }}) => {
     if (!data) {
         return 'Loading...';
     }
-    const { confirmed, recovered, deaths, lastUpdate } = data;
+    console.log('data received:')
     console.log(data);
+    const { confirmed, recovered, deaths, lastUpdate } = data;
     
     return (
         <div className={styles.container}>

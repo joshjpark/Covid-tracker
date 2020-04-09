@@ -12,15 +12,14 @@ class App extends Component {
     }
 
     async componentDidMount() {
-        // const { data: { confirmed, recovered, deaths, lastUpdate } } = await fetchData();
         const fetchedData = await fetchData();
         this.setState( { data: fetchedData })
     }
 
+    // fetch data and set state
     handleCountryChange = async (country) => {
-        console.log(country);
-        // fetch the data
-        // set the state
+        const fetchedData = await fetchData(country);
+        this.setState({ data: fetchedData, country: country });
     }
 
     render() {

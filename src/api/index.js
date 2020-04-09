@@ -3,11 +3,19 @@ import axios from 'axios';
 const url = 'https://covid19.mathdro.id/api';
 
 // http api call; asynchronous so it doesn't block main thread
-export const fetchData = async () => {
+export const fetchData = async (country) => {
+    let dynamicUrl = url;
+    
+    if (country) {
+        // dynamicUrl = await axios.get(`${url}/countries/${country}`);
+        dynamicUrl = `${url}/countries/${country}`;
+    }
     try {
-        const response = await axios.get(url);
+        const response = await axios.get(dynamicUrl);
+        console.log(response);
         return response;
     } catch(error) {
+        console.log(error);
     }
 }
 
