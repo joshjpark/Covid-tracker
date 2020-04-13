@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const url = 'https://covid19.mathdro.id/api';
+const timelapseurl = 'https://pomber.github.io/covid19/timeseries.json';
 
 // http api call; asynchronous so it doesn't block main thread
 export const fetchData = async (country) => {
@@ -12,10 +13,8 @@ export const fetchData = async (country) => {
     }
     try {
         const response = await axios.get(dynamicUrl);
-        console.log(response);
         return response;
     } catch(error) {
-        console.log(error);
     }
 }
 
@@ -31,7 +30,6 @@ export const fetchDailyData = async () => {
             recovered: dailyData.recovered.total
         }));
 
-
         return modifiedData;
     } catch(error) {
     }
@@ -41,9 +39,15 @@ export const fetchCountries = async () => {
     try {
         const response = await axios.get(`${url}/countries`);
         const { data } = response;
-        console.log(data);
         return data;
     } catch(error) {
-        
+    }
+}
+
+export const fetchTimeLapse = async () => {
+    try {
+        const response = await axios.get(`${timelapseurl}`);
+        return response;
+    } catch(error) {
     }
 }
