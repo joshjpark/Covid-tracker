@@ -16,43 +16,75 @@ const BarChart = ({ country }) => {
         }
         fetchAPI();
     });
+    
+    // let a = dailyData.map(({ deaths }) => deaths);
+    
+    // let a = dailyData.map(({ deaths }) => deaths).filter((word, index, arr) => {
+    //     if (index % 7 === (arr.length - 1) % 7) {
+    //         return word;
+    //     }
+    // });
+    
+    // let a = dailyData.map(({ deaths }) => deaths).filter(function(word, index, arr) {
+    //    if (index % 7 === (arr.length - 1) % 7) {
+    //        return word;
+    //    } 
+    // });
+    
+        
+
+    // let arr = []
+    // let a = dailyData.map(({ date }) => date).filter((word, index, arr) => {
+    //     if (index % 7 === (arr.length - 1) % 7) {
+    //         arr.append(word);
+    //     }
+    // });
+    // console.log(a);
+    // console.log(arr);
+
+
 
     const BarChart = (
         dailyData.length
             ? (
                 <Bar
                 data={{
-                    labels: dailyData.map(({ date }) => date).filter((word, index, arr) => {
-                        if (index % 7 == (arr.length - 1) % 7) {
-                            return word;
-                        }
-                    }),
+                    // labels: dailyData.map(({ date }) => date).filter((word, index, arr) => {
+                    //     if (index % 7 === (arr.length - 1) % 7) {
+                    //         return word;
+                    //     }
+                    // }),
+                    labels: filterIndex(dailyData.map(({ date }) => date)),
+
                     datasets: [
                     {
-                        data: dailyData.map(({ deaths }) => deaths).filter((word, index, arr) => {
-                            if (index % 7 == (arr.length - 1) % 7) {
-                                return word;
-                            }
-                        }), 
+                        // data: dailyData.map(({ deaths }) => deaths).filter((word, index, arr) => {
+                        //     if (index % 7 === (arr.length - 1) % 7) {
+                        //         return word;
+                        //     }
+                        // }), 
+                        data : filterIndex(dailyData.map(({ deaths }) => deaths)),
                         label: 'Deaths', 
                         backgroundColor: 'red', 
                         borderColor: 'red',
                         fill: true,
                     }, {
-                        data: dailyData.map(({ recovered }) => recovered).filter((word, index, arr) => {
-                            if (index % 7 == (arr.length - 1) % 7) {
-                                return word;
-                            }
-                        }),
+                        // data: dailyData.map(({ recovered }) => recovered).filter((word, index, arr) => {
+                        //     if (index % 7 === (arr.length - 1) % 7) {
+                        //         return word;
+                        //     }
+                        // }),
+                        data: filterIndex(dailyData.map(({ recovered }) => recovered)),
                         backgroundColor: 'green',
                         borderColor: 'green',
                         fill: true,
                     }, {
-                        data: dailyData.map(({ confirmed }) => confirmed).filter((word, index, arr) => {
-                            if (index % 7 == (arr.length - 1) % 7) {
-                                return word;
-                            }
-                        }),
+                        // data: dailyData.map(({ confirmed }) => confirmed).filter((word, index, arr) => {
+                        //     if (index % 7 === (arr.length - 1) % 7) {
+                        //         return word;
+                        //     }
+                        // }),
+                        data: filterIndex(dailyData.map(({ confirmed }) => confirmed)),
                         label: 'Infected',
                         borderColor: '#2196f3',
                         backgroundColor: '#2196f3',
@@ -75,11 +107,34 @@ const BarChart = ({ country }) => {
 }
 
 // filter index for weekly data
-function filterIndex(index, len, word) {
-    if (index % 7 == len % 7) {
-        return word;
+// function filterIndex(index, len, word) {
+//     if (index % 7 == len % 7) {
+//         return word;
+//     }
+// }
+
+// filters array index
+function filterIndex(arr) {
+    let ret = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (i % 7 === (arr.length - 1) % 7) {
+            ret.push(arr[i]);
+        }
     }
-}
+    return ret;
+} 
+
+// var b = [];
+// let a = dailyData.map(({ recovered }) => recovered);
+// if (a) {
+//     for (let i = 0; i < a.length; i++) {
+//         if (i % 7 === (a.length - 1) % 7) {
+//             b.push(a[i]);
+//         }
+//     }
+// }
+// console.log(b);
+
 
 
 export default BarChart;
