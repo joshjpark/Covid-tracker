@@ -22,21 +22,37 @@ const BarChart = ({ country }) => {
             ? (
                 <Bar
                 data={{
-                    labels: dailyData.map(({ date }) => date),
+                    labels: dailyData.map(({ date }) => date).filter((word, index, arr) => {
+                        if (index % 7 == (arr.length - 1) % 7) {
+                            return word;
+                        }
+                    }),
                     datasets: [
                     {
-                        data: dailyData.map(({ deaths }) => deaths), 
+                        data: dailyData.map(({ deaths }) => deaths).filter((word, index, arr) => {
+                            if (index % 7 == (arr.length - 1) % 7) {
+                                return word;
+                            }
+                        }), 
                         label: 'Deaths', 
                         backgroundColor: 'red', 
                         borderColor: 'red',
                         fill: true,
                     }, {
-                        data: dailyData.map(({ recovered }) => recovered),
+                        data: dailyData.map(({ recovered }) => recovered).filter((word, index, arr) => {
+                            if (index % 7 == (arr.length - 1) % 7) {
+                                return word;
+                            }
+                        }),
                         backgroundColor: 'green',
                         borderColor: 'green',
                         fill: true,
                     }, {
-                        data: dailyData.map(({ confirmed }) => confirmed),
+                        data: dailyData.map(({ confirmed }) => confirmed).filter((word, index, arr) => {
+                            if (index % 7 == (arr.length - 1) % 7) {
+                                return word;
+                            }
+                        }),
                         label: 'Infected',
                         borderColor: '#2196f3',
                         backgroundColor: '#2196f3',
@@ -57,5 +73,13 @@ const BarChart = ({ country }) => {
         </div>
     )
 }
+
+// filter index for weekly data
+function filterIndex(index, len, word) {
+    if (index % 7 == len % 7) {
+        return word;
+    }
+}
+
 
 export default BarChart;
