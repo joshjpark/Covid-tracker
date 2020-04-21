@@ -43,11 +43,7 @@ const PieChart = ({ country }) => {
                 }}
             />) : null
     );
-    
-    if (recentData) {
-        console.log(recentData["confirmed"]);        
-    }
-    
+        
     return (
         <div className={styles.container}>
             {pieChart}

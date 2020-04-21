@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Cards, Chart, CountryPicker, PieChart, BarChart } from './components';
+import { Cards, Chart, CountryPicker, PieChart, BarChart, TableChart } from './components';
 import styles from './App.module.css';
 import { fetchData, fetchTimeLapse } from './api';
 
@@ -34,6 +34,7 @@ class App extends Component {
             <Chart data={data} country={country}/>
                 <PieChart data={data} country={country}/>
                 <BarChart data={data} country={country}/>
+            <TableChart data={data} country={country}/>
         </div>
         )
     }
