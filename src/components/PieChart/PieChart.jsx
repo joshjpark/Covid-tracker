@@ -32,13 +32,34 @@ const PieChart = ({ country }) => {
                     datasets: [{
                         fill: true,
                         backgroundColor: [
-                            'blue',
-                            'green',
-                            'red'
+                            [
+                                'rgba(99, 132, 255, 0.8)',
+                                'rgba(162, 235, 54, 0.8)',
+                                'rgba(206, 86, 255, 0.8)',
+                                'rgba(192, 192, 75, 0.8)',
+                                'rgba(102, 255, 153, 0.8)',
+                                'rgba(159, 64, 255, 0.8)'
+                            ],
+                            [
+                                'rgba(99, 255, 132, 0.8)',
+                                'rgba(162, 54, 235, 0.8)',
+                                'rgba(206, 255, 86, 0.8)',
+                                'rgba(192, 75, 192, 0.8)',
+                                'rgba(102, 153, 255, 0.8)',
+                                'rgba(159, 255, 64, 0.8)',
+                            ],
+                            [
+                                'rgba(255, 99, 132, 0.8)', 
+                                'rgba(54, 162, 235, 0.8)',
+                                'rgba(255, 206, 86, 0.8)', 
+                                'rgba(75, 192, 192, 0.8)',
+                                'rgba(153, 102, 255, 0.8)',
+                                'rgba(255, 159, 64, 0.8)'                            
+                            ]
                         ],
                         data: [recentData["confirmed"], recentData["recovered"], recentData["deaths"]],
                         borderColor: ['black', 'black','black'],
-                        borderWidth: [2,2,2]
+                        borderWidth: [1,1,1]
                     }]
                 }}
             />) : null

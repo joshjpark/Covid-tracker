@@ -19,8 +19,6 @@ const Charts = ({ country }) => {
         fetchAPI();
     });
 
-    
-
     const lineChart = (
         dailyData.length
             ? (
