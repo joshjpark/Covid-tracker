@@ -16,79 +16,57 @@ const BarChart = ({ country }) => {
         }
         fetchAPI();
     });
-    
-    // let a = dailyData.map(({ deaths }) => deaths);
-    
-    // let a = dailyData.map(({ deaths }) => deaths).filter((word, index, arr) => {
-    //     if (index % 7 === (arr.length - 1) % 7) {
-    //         return word;
-    //     }
-    // });
-    
-    // let a = dailyData.map(({ deaths }) => deaths).filter(function(word, index, arr) {
-    //    if (index % 7 === (arr.length - 1) % 7) {
-    //        return word;
-    //    } 
-    // });
-    
-        
-
-    // let arr = []
-    // let a = dailyData.map(({ date }) => date).filter((word, index, arr) => {
-    //     if (index % 7 === (arr.length - 1) % 7) {
-    //         arr.append(word);
-    //     }
-    // });
-    // console.log(a);
-    // console.log(arr);
-
-
 
     const BarChart = (
         dailyData.length
             ? (
                 <Bar
                 data={{
-                    // labels: dailyData.map(({ date }) => date).filter((word, index, arr) => {
-                    //     if (index % 7 === (arr.length - 1) % 7) {
-                    //         return word;
-                    //     }
-                    // }),
                     labels: filterIndex(dailyData.map(({ date }) => date)),
 
                     datasets: [
                     {
-                        // data: dailyData.map(({ deaths }) => deaths).filter((word, index, arr) => {
-                        //     if (index % 7 === (arr.length - 1) % 7) {
-                        //         return word;
-                        //     }
-                        // }), 
                         data : filterIndex(dailyData.map(({ deaths }) => deaths)),
                         label: 'Deaths', 
-                        backgroundColor: 'red', 
                         borderColor: 'red',
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.8)', 
+                            'rgba(54, 162, 235, 0.8)',
+                            'rgba(255, 206, 86, 0.8)', 
+                            'rgba(75, 192, 192, 0.8)',
+                            'rgba(153, 102, 255, 0.8)',
+                            'rgba(255, 159, 64, 0.8)'                            
+                        ], 
+                        borderWidth: 2,
                         fill: true,
-                    }, {
-                        // data: dailyData.map(({ recovered }) => recovered).filter((word, index, arr) => {
-                        //     if (index % 7 === (arr.length - 1) % 7) {
-                        //         return word;
-                        //     }
-                        // }),
+                    }, 
+                    {
                         data: filterIndex(dailyData.map(({ recovered }) => recovered)),
-                        backgroundColor: 'green',
                         borderColor: 'green',
+                        backgroundColor: [
+                            'rgba(99, 255, 132, 0.8)',
+                            'rgba(162, 54, 235, 0.8)',
+                            'rgba(206, 255, 86, 0.8)',
+                            'rgba(192, 75, 192, 0.8)',
+                            'rgba(102, 153, 255, 0.8)',
+                            'rgba(159, 255, 64, 0.8)',
+                        ],
+                        borderWidth: 2,
                         fill: true,
-                    }, {
-                        // data: dailyData.map(({ confirmed }) => confirmed).filter((word, index, arr) => {
-                        //     if (index % 7 === (arr.length - 1) % 7) {
-                        //         return word;
-                        //     }
-                        // }),
+                    }, 
+                    {
                         data: filterIndex(dailyData.map(({ confirmed }) => confirmed)),
                         label: 'Infected',
                         borderColor: '#2196f3',
-                        backgroundColor: '#2196f3',
-                        borderWidth: 1,
+                        backgroundColor: [
+                            'rgba(99, 132, 255, 0.8)',
+                            'rgba(162, 235, 255, 0.8)',
+                            'rgba(206, 86, 255, 0.8)',
+                            'rgba(192, 192, 255, 0.8)',
+                            'rgba(102, 255, 153, 0.8)',
+                            'rgba(159, 64, 255, 0.8)'
+                        ],
+                        borderWidth: 2,
                         fill: true,
                     }
                 ],
@@ -106,12 +84,6 @@ const BarChart = ({ country }) => {
     )
 }
 
-// filter index for weekly data
-// function filterIndex(index, len, word) {
-//     if (index % 7 == len % 7) {
-//         return word;
-//     }
-// }
 
 // filters array index
 function filterIndex(arr) {
@@ -123,18 +95,5 @@ function filterIndex(arr) {
     }
     return ret;
 } 
-
-// var b = [];
-// let a = dailyData.map(({ recovered }) => recovered);
-// if (a) {
-//     for (let i = 0; i < a.length; i++) {
-//         if (i % 7 === (a.length - 1) % 7) {
-//             b.push(a[i]);
-//         }
-//     }
-// }
-// console.log(b);
-
-
 
 export default BarChart;
