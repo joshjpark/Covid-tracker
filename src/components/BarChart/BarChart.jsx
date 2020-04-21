@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { fetchDailyData, fetchTimeLapse } from '../../api';
-import { Line, Bar } from 'react-chartjs-2';
-import styles from './Chart.module.css';
- 
-const Charts = ({ country }) => {
+import { fetchTimeLapse } from '../../api';
+import { Bar } from 'react-chartjs-2';
+import styles from './BarChart.module.css';
 
+const BarChart = ({ country }) => {
     const [dailyData, setDailyData] = useState([]);
 
     useEffect(() => {
-        const fetchAPI = async () => {
+        const fetchAPI = async() => {
             if (country) {
                 let dailyData = await fetchTimeLapse();
                 dailyData = dailyData.data[country];
@@ -18,10 +17,10 @@ const Charts = ({ country }) => {
         fetchAPI();
     });
 
-    const lineChart = (
+    const BarChart = (
         dailyData.length
             ? (
-                <Line
+                <Bar
                 data={{
                     labels: dailyData.map(({ date }) => date),
                     datasets: [
@@ -33,7 +32,6 @@ const Charts = ({ country }) => {
                         fill: true,
                     }, {
                         data: dailyData.map(({ recovered }) => recovered),
-                        label: 'Recovered',
                         backgroundColor: 'green',
                         borderColor: 'green',
                         fill: true,
@@ -55,9 +53,9 @@ const Charts = ({ country }) => {
     );
     return (
         <div className={styles.container}>
-            {lineChart}
+            {BarChart}
         </div>
     )
 }
 
-export default Charts;
+export default BarChart;

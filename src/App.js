@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Cards, Chart, CountryPicker } from './components';
+import { Cards, Chart, CountryPicker, PieChart, BarChart } from './components';
 import styles from './App.module.css';
 import { fetchData, fetchTimeLapse } from './api';
 
@@ -15,11 +15,6 @@ class App extends Component {
         const fetchedData = await fetchData();
         const fetchedTimeLapse = await fetchTimeLapse();
         this.setState( { data : fetchedData });
-
-        // console.log(fetchedData);
-        console.log('fetchedTimeLapse: ');
-        console.log(fetchedTimeLapse.data['Afghanistan']);
-        // console.log(fetchedTimeLapse.data[]);
     }
 
     // fetch data and set state
@@ -30,13 +25,15 @@ class App extends Component {
 
     render() {
         const { data, country } = this.state;
-        
+
         return (
             // no css intereference across fs
         <div className={styles.container}>
             <Cards data={data}/>
                 <CountryPicker country={country} handleCountryChange={this.handleCountryChange}/>
             <Chart data={data} country={country}/>
+                <PieChart data={data} country={country}/>
+                <BarChart data={data} country={country}/>
         </div>
         )
     }
