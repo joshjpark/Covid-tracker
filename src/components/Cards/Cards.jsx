@@ -5,6 +5,12 @@ import cx from 'classnames';
 
 import styles from './Cards.module.css';
 
+/*
+    TODO:
+    - add +<NUMBER> Yesterday
+    - add % value for each card
+*/
+
 const Cards = ({ data : { data }}) => {
     if (!data) {
         return 'Loading...';
