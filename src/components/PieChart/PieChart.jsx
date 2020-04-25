@@ -28,7 +28,7 @@ const PieChart = ({ country }) => {
             ? ( 
                 <Pie
                 data={{
-                    labels: ["Infected", "Recovered", "Died"],
+                    labels: ["Infected", "Recovered", "Deaths"],
                     datasets: [{
                         fill: true,
                         backgroundColor: [

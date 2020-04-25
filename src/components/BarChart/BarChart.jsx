@@ -3,6 +3,8 @@ import { fetchTimeLapse } from '../../api';
 import { Bar } from 'react-chartjs-2';
 import styles from './BarChart.module.css';
 
+// reference: https://codepen.io/orouz/pen/NZqLRY
+
 const BarChart = ({ country }) => {
     const [dailyData, setDailyData] = useState([]);
 
@@ -17,7 +19,7 @@ const BarChart = ({ country }) => {
         fetchAPI();
     });
 
-    const BarChart = (
+    const barChart = (
         dailyData.length
             ? (
                 <Bar
@@ -42,6 +44,7 @@ const BarChart = ({ country }) => {
                     }, 
                     {
                         data: filterIndex(dailyData.map(({ recovered }) => recovered)),
+                        label: 'Recovered',
                         borderColor: 'green',
                         backgroundColor: [
                             'rgba(99, 255, 132, 0.8)',
@@ -79,14 +82,14 @@ const BarChart = ({ country }) => {
     );
     return (
         <div className={styles.container}>
-            {BarChart}
+            {barChart}
         </div>
     )
 }
 
 
 // filters array index
-function filterIndex(arr) {
+export function filterIndex(arr) {
     let ret = [];
     for (let i = 0; i < arr.length; i++) {
         if (i % 7 === (arr.length - 1) % 7) {
