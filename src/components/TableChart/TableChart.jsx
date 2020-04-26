@@ -18,23 +18,36 @@ const TableChart = ({ country }) => {
         fetchAPI();
     });
 
-    const renderData = ({ date, confirmed, recovered, deaths }, index) => {
+    let low_confirmed = null;
+    let low_recovered = null;
+    let low_deaths = null;
+
+    const renderData = ({ date, confirmed, recovered, deaths }, index, arr) => {
+        // first of all, calculate differences between low and current item
+        // put the results in differences variables
+        // and update low to current item
+        let diff_confirmed = low_confirmed - confirmed;
+        let diff_recovered = low_recovered - recovered;
+        let diff_deaths = low_deaths - deaths;
+
+        low_confirmed = confirmed;
+        low_recovered = recovered;
+        low_deaths = deaths;
+
         return (
             <tr key={index}>
                 <td>{date}</td>
                 <td>{confirmed}</td>
-                <td>{recovered}</td>
+                <td className="p-3 mb-2 bg-warning text-black font-weight-bold">{diff_confirmed}</td>
                 <td>{deaths}</td>
+                <td className="p-3 mb-2 bg-danger text-white font-weight-bold">{diff_deaths}</td>
+                <td>{recovered}</td>
+                <td className="p-3 mb-2 bg-success text-black font-weight-bold">{diff_recovered}</td>
             </tr>
         );
     }
-    // now render as HTML! 
-    // return (
-    //     <div className={styles.container}>
-    //         {/* {CreateTable('hello', country)} */}
-    //         {CreateTables(dailyData)}
-    //     </div>        
-    // );
+
+    // p-3 mb-2 bg-danger text-white
     return (
         <div className={styles.container}>
             <ReactBootstrap.Table striped border hover>
@@ -42,8 +55,11 @@ const TableChart = ({ country }) => {
             <tr>
                 <th>Date</th>
                 <th>Infected</th>
-                <th>Recovered</th>
+                <th>New Cases</th>
                 <th>Deaths</th>
+                <th>New Deaths</th>
+                <th>Recovered</th>
+                <th>New Recovered</th>
             </tr>
         </thead>            
         <tbody>
@@ -55,6 +71,7 @@ const TableChart = ({ country }) => {
     );
 }
 
+// how can I go about this? 
 
 
 // create table from data
