@@ -39,7 +39,7 @@ class App extends Component {
             <Chart data={data} country={country}/>
             <PieChart data={data} country={country}/>
             <BarChart data={data} country={country} countryTimeLapse={countryTimeLapse}/>
-            <TableChart data={data} country={country}/>
+            <TableChart data={data} country={country} countryTimeLapse={countryTimeLapse}/>
         </div>
         )
     }

@@ -1,21 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import styles from './TableChart.module.css'
-import { filterIndex } from '../BarChart/BarChart'
-import { fetchTimeLapse } from '../../api';
+// import { filterIndex } from '../BarChart/BarChart'
+// import { fetchTimeLapse } from '../../api';
 import * as ReactBootstrap from 'react-bootstrap';
 
-const TableChart = ({ country }) => {
+const TableChart = ({ country, countryTimeLapse }) => {
     const [dailyData, setDailyData] = useState([]);
 
     useEffect(() => {
-        const fetchAPI = async() => {
-            if (country) {
-                let dailyData = await fetchTimeLapse();
-                dailyData = dailyData.data[country];
-                setDailyData(dailyData);
-            }
+        if (country) {
+            let dailyData = countryTimeLapse;
+            setDailyData(dailyData);
         }
-        fetchAPI();
     });
 
     let low_confirmed = null;
@@ -23,9 +19,6 @@ const TableChart = ({ country }) => {
     let low_deaths = null;
 
     const renderData = ({ date, confirmed, recovered, deaths }, index, arr) => {
-        // first of all, calculate differences between low and current item
-        // put the results in differences variables
-        // and update low to current item
         let diff_confirmed = low_confirmed - confirmed;
         let diff_recovered = low_recovered - recovered;
         let diff_deaths = low_deaths - deaths;
@@ -47,7 +40,6 @@ const TableChart = ({ country }) => {
         );
     }
 
-    // p-3 mb-2 bg-danger text-white
     return (
         <div className={styles.container}>
             <ReactBootstrap.Table striped border hover>
@@ -70,20 +62,5 @@ const TableChart = ({ country }) => {
         </div>
     );
 }
-
-// how can I go about this? 
-
-
-// create table from data
-// function CreateTables(data) {
-//     if (data) {
-//         let table = "<table><thead><tr><th>Date</th><th>Infected</th><th>Recovered</th><th>Deaths</th></tr>";
-//         data.forEach(function(item, index) {
-//             table += "<tr><td>" + item['date'] + "</td><td>" + item['confirmed'] + "</td><td>" + item['recovered'] + "</td><td>" + item['deaths'] + "</td></tr>";        
-//         });
-//         table += "</thread></table>";
-//         return table;
-//     }
-// }
 
 export default TableChart;
