@@ -5,18 +5,14 @@ import styles from './BarChart.module.css';
 
 // reference: https://codepen.io/orouz/pen/NZqLRY
 
-const BarChart = ({ country }) => {
+const BarChart = ({ country, countryTimeLapse }) => {
     const [dailyData, setDailyData] = useState([]);
 
     useEffect(() => {
-        const fetchAPI = async() => {
-            if (country) {
-                let dailyData = await fetchTimeLapse();
-                dailyData = dailyData.data[country];
-                setDailyData(dailyData);
-            }
+        if (country) {
+            let dailyData = countryTimeLapse;
+            setDailyData(dailyData);
         }
-        fetchAPI();
     });
 
     const barChart = (

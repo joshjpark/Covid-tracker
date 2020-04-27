@@ -9,31 +9,36 @@ class App extends Component {
     state = {
         data: {},
         country: '',
+        countryTimeLapse: []
     }
 
     async componentDidMount() {
         const fetchedData = await fetchData();
-        const fetchedTimeLapse = await fetchTimeLapse();
+        // const fetchedTimeLapse = await fetchTimeLapse();
         this.setState( { data : fetchedData });
     }
 
     // fetch data and set state
     handleCountryChange = async (country) => {
+        // summary data
         const fetchedData = await fetchData(country);
-        this.setState({ data : fetchedData, country : country });
+        // timelapse data
+        const timeLapseData = await fetchTimeLapse();
+        const countryTimeLapse = timeLapseData['data'][country];
+        this.setState({ data : fetchedData, country : country, countryTimeLapse : countryTimeLapse });
     }
 
     render() {
-        const { data, country } = this.state;
+        const { data, country, countryTimeLapse } = this.state;
 
         return (
             // no css intereference across fs
         <div className={styles.container}>
             <Cards data={data}/>
-                <CountryPicker country={country} handleCountryChange={this.handleCountryChange}/>
+            <CountryPicker country={country} handleCountryChange={this.handleCountryChange}/>
             <Chart data={data} country={country}/>
-                <PieChart data={data} country={country}/>
-                <BarChart data={data} country={country}/>
+            <PieChart data={data} country={country}/>
+            <BarChart data={data} country={country} countryTimeLapse={countryTimeLapse}/>
             <TableChart data={data} country={country}/>
         </div>
         )
