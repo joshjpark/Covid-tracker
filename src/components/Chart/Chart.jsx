@@ -4,19 +4,15 @@ import { Line, Bar } from 'react-chartjs-2';
 import styles from './Chart.module.css';
 import Chart from 'chart.js';
  
-const Charts = ({ country }) => {
+const Charts = ({ country, countryTimeLapse }) => {
 
     const [dailyData, setDailyData] = useState([]);
 
     useEffect(() => {
-        const fetchAPI = async () => {
-            if (country) {
-                let dailyData = await fetchTimeLapse();
-                dailyData = dailyData.data[country];
-                setDailyData(dailyData);
-            }
+        if (country) {
+            let dailyData = countryTimeLapse;
+            setDailyData(dailyData);
         }
-        fetchAPI();
     });
 
     const lineChart = (

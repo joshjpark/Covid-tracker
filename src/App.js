@@ -36,8 +36,8 @@ class App extends Component {
         <div className={styles.container}>
             <Cards data={data}/>
             <CountryPicker country={country} handleCountryChange={this.handleCountryChange}/>
-            <Chart data={data} country={country}/>
-            <PieChart data={data} country={country}/>
+            <Chart data={data} country={country} countryTimeLapse={countryTimeLapse}/>
+            <PieChart data={data} country={country} countryTimeLapse={countryTimeLapse}/>
             <BarChart data={data} country={country} countryTimeLapse={countryTimeLapse}/>
             <TableChart data={data} country={country} countryTimeLapse={countryTimeLapse}/>
         </div>

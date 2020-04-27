@@ -1,20 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { fetchTimeLapse } from '../../api';
-import { Bar, Pie } from 'react-chartjs-2';
+import { Pie } from 'react-chartjs-2';
 import styles from './PieChart.module.css';
 
-const PieChart = ({ country }) => {
+const PieChart = ({ country, countryTimeLapse }) => {
     const [dailyData, setDailyData] = useState([]);
-
+    
     useEffect(() => {
-        const fetchAPI = async() => {
-            if (country) {
-                let dailyData = await fetchTimeLapse();
-                dailyData = dailyData.data[country];
-                setDailyData(dailyData);
-            }
+        if (country) {
+            let dailyData = countryTimeLapse;
+            setDailyData(dailyData);
         }
-        fetchAPI();
     });
 
     // most recent data for piechart
